@@ -1,12 +1,22 @@
-1. npm install
+#### Install node modules
 
-2. copy and rename .env.example to .env
+```
+npm install
+```
 
-3. Set db settings in .env
+#### Copy and rename .env.example to .env
 
-4. Run migrations:\
-   npm run knex-dev migrate:latest
+#### Set db settings in .env
 
-5. Build and run app:\
-npm run build\
+#### Run migrations:
+
+```
+npm run knex-dev migrate:latest
+```
+
+#### Build and run app:
+
+```
+npm run build
 npm run start
+```
