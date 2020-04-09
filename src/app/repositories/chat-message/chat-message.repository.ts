@@ -29,6 +29,27 @@ export class ChatMessageRepository implements IChatMessageRepository {
   };
 
   /**
+   * Get last n chat messages
+   *
+   * @param limit
+   */
+  public getLast = async (limit = 10): Promise<ChatMessageEntity[]> => {
+    const subquery1 = this.entity
+      .query(this.connection)
+      .orderBy('id', 'desc')
+      .limit(limit)
+      .as('sub');
+
+    return this.entity
+      .query(this.connection)
+      .withGraphFetched('user')
+      .select('*')
+      .from(subquery1)
+      .orderBy('id', 'asc')
+      .execute();
+  };
+
+  /**
    * Find chat message by id
    *
    * @param id

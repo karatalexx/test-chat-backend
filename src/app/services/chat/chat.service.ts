@@ -50,7 +50,7 @@ export class ChatService {
         this.io.sockets.emit('user_connected', [socket.user]);
 
         // List of chat messages
-        this.io.sockets.emit('messages_list', await this.chatMessageRepository.findAll(1));
+        this.io.sockets.emit('messages_list', await this.chatMessageRepository.getLast(24));
 
         // User typing
         socket.on('user_typing', async (userId: number) => {
